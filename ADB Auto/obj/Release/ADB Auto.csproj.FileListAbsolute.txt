@@ -1,0 +1,11 @@
+D:\Bibliotecas\Documentos\.Net\ADB Auto\ADB Auto\bin\Release\ADB Auto.exe.config
+D:\Bibliotecas\Documentos\.Net\ADB Auto\ADB Auto\bin\Release\ADB Auto.exe
+D:\Bibliotecas\Documentos\.Net\ADB Auto\ADB Auto\bin\Release\ADB Auto.pdb
+D:\Bibliotecas\Documentos\.Net\ADB Auto\ADB Auto\obj\Release\ADB Auto.csproj.AssemblyReference.cache
+D:\Bibliotecas\Documentos\.Net\ADB Auto\ADB Auto\obj\Release\ADB Auto.csproj.SuggestedBindingRedirects.cache
+D:\Bibliotecas\Documentos\.Net\ADB Auto\ADB Auto\obj\Release\ADB_Auto.Form1.resources
+D:\Bibliotecas\Documentos\.Net\ADB Auto\ADB Auto\obj\Release\ADB_Auto.Properties.Resources.resources
+D:\Bibliotecas\Documentos\.Net\ADB Auto\ADB Auto\obj\Release\ADB Auto.csproj.GenerateResource.cache
+D:\Bibliotecas\Documentos\.Net\ADB Auto\ADB Auto\obj\Release\ADB Auto.csproj.CoreCompileInputs.cache
+D:\Bibliotecas\Documentos\.Net\ADB Auto\ADB Auto\obj\Release\ADB Auto.exe
+D:\Bibliotecas\Documentos\.Net\ADB Auto\ADB Auto\obj\Release\ADB Auto.pdb
