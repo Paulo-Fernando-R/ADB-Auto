@@ -297,6 +297,24 @@ namespace ADB_Auto
             InstallApk(pathTxt.Text, false);
         }
 
+        private void btnKill_Click(object sender, EventArgs e)
+        {
+            Process cmd = new Process();
+            cmd.StartInfo.FileName = "cmd.exe";
+            cmd.StartInfo.RedirectStandardInput = true;
+            cmd.StartInfo.RedirectStandardOutput = true;
+            cmd.StartInfo.CreateNoWindow = true;
+            cmd.StartInfo.UseShellExecute = false;
+
+            cmd.Start();
+
+            cmd.StandardInput.WriteLine("adb start-server");
+            cmd.StandardInput.WriteLine("adb kill-server");
+            cmd.StandardInput.Flush();
+            cmd.StandardInput.Close();
+            Application.Restart();
+        }
+
 
 
 

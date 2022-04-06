@@ -1,0 +1,5 @@
+adb tcpip 5555 //config porta
+adb connect 192.168.0.2:5555 // conectar
+adb devices // listar dispositivos
+disconnect 192.168.0.2:5555 // desconectar
+install C:\insta.apk // instalar apk

@@ -51,6 +51,7 @@
             this.pathTxt = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.btnKill = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -175,6 +176,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(12)))), ((int)(((byte)(22)))));
+            this.panel2.Controls.Add(this.btnKill);
             this.panel2.Controls.Add(this.discBtn);
             this.panel2.Controls.Add(this.label3);
             this.panel2.Controls.Add(this.listBox2);
@@ -191,9 +193,9 @@
             this.discBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.discBtn.Font = new System.Drawing.Font("Microsoft Tai Le", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.discBtn.ForeColor = System.Drawing.Color.DarkGray;
-            this.discBtn.Location = new System.Drawing.Point(134, 238);
+            this.discBtn.Location = new System.Drawing.Point(7, 238);
             this.discBtn.Name = "discBtn";
-            this.discBtn.Size = new System.Drawing.Size(212, 34);
+            this.discBtn.Size = new System.Drawing.Size(215, 34);
             this.discBtn.TabIndex = 7;
             this.discBtn.Text = "Desconectar";
             this.discBtn.UseVisualStyleBackColor = false;
@@ -351,6 +353,21 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // btnKill
+            // 
+            this.btnKill.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnKill.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(12)))), ((int)(((byte)(22)))));
+            this.btnKill.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnKill.Font = new System.Drawing.Font("Microsoft Tai Le", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnKill.ForeColor = System.Drawing.Color.DarkGray;
+            this.btnKill.Location = new System.Drawing.Point(240, 238);
+            this.btnKill.Name = "btnKill";
+            this.btnKill.Size = new System.Drawing.Size(215, 34);
+            this.btnKill.TabIndex = 8;
+            this.btnKill.Text = "Matar processo";
+            this.btnKill.UseVisualStyleBackColor = false;
+            this.btnKill.Click += new System.EventHandler(this.btnKill_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -404,6 +421,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.Button btnKill;
     }
 }
 
