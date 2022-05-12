@@ -1,12 +1,8 @@
-﻿using System;
+﻿using ADB_Auto.Services;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -14,6 +10,8 @@ namespace ADB_Auto
 {
     public partial class Form1 : Form
     {
+        private readonly DialogService dialogService = new DialogService();
+
         public Form1()
         {
             InitializeComponent();
@@ -28,7 +26,7 @@ namespace ADB_Auto
                 StreamWriter sw = new StreamWriter("SaveIPs.txt");
                 sw.Close();
             }
-            FillListIPs(); 
+            FillListIPs();
             PickIpsInReturn();
             Application.EnableVisualStyles();
         }
@@ -64,7 +62,7 @@ namespace ADB_Auto
 
             foreach (string line in System.IO.File.ReadAllLines("SaveIPs.txt"))
             {
-                if(result.Contains(line))
+                if (result.Contains(line))
                 {
                     ips.Add(line);
                 }
@@ -160,13 +158,13 @@ namespace ADB_Auto
                     mb
                 );
 
-            if(result == DialogResult.No)
+            if (result == DialogResult.No)
             {
                 return;
             }
             List<string> list = new List<string>();
 
-            if(listBox1.SelectedItem == null)
+            if (listBox1.SelectedItem == null)
             {
                 MessageBox.Show("Selecione um dispositivo");
                 return;
@@ -174,7 +172,7 @@ namespace ADB_Auto
 
             foreach (string line in System.IO.File.ReadAllLines("SaveIPs.txt"))
             {
-               list.Add(line);
+                list.Add(line);
             }
 
             if (list.Contains(listBox1.SelectedItem.ToString()))
@@ -184,11 +182,11 @@ namespace ADB_Auto
 
             StreamWriter sw = new StreamWriter("SaveIPs.txt");
 
-            foreach(var item in list)
+            foreach (var item in list)
             {
                 sw.WriteLine(item);
             }
-            
+
             sw.Close();
 
             FillListIPs();
@@ -197,21 +195,21 @@ namespace ADB_Auto
         private async void InstallApk(string path, bool back)
         {
             progressBar1.Visible = true;
-             Process cmd = new Process();
-             cmd.StartInfo.FileName = "cmd.exe";
-             cmd.StartInfo.RedirectStandardInput = true;
-             cmd.StartInfo.RedirectStandardOutput = true;
-             cmd.StartInfo.CreateNoWindow = true;
-             cmd.StartInfo.UseShellExecute = false;
+            Process cmd = new Process();
+            cmd.StartInfo.FileName = "cmd.exe";
+            cmd.StartInfo.RedirectStandardInput = true;
+            cmd.StartInfo.RedirectStandardOutput = true;
+            cmd.StartInfo.CreateNoWindow = true;
+            cmd.StartInfo.UseShellExecute = false;
 
-             cmd.Start();
-             cmd.StandardInput.WriteLine("adb -s " + listBox2.SelectedItem.ToString() + ":5555 " + "install " + path);
-             cmd.StandardInput.Flush();
-             cmd.StandardInput.Close();
+            cmd.Start();
+            cmd.StandardInput.WriteLine("adb -s " + listBox2.SelectedItem.ToString() + ":5555 " + "install " + path);
+            cmd.StandardInput.Flush();
+            cmd.StandardInput.Close();
 
             await Task.Delay(3000);
 
-            if(!back)
+            if (!back)
                 MessageBox.Show(cmd.StandardOutput.ReadToEnd());
 
             progressBar1.Visible=false;
@@ -252,21 +250,10 @@ namespace ADB_Auto
             DeleteDevice();
         }
 
-        private void btnSearch_Click(object sender, EventArgs e)
+        private void BtnSearchAPK_Click(object sender, EventArgs e)
         {
-           
-            string path = "";
-            openFileDialog1.InitialDirectory = "c:\\";
-            openFileDialog1.Filter = "APK files (*.apk)|*.apk|All files(*.*)|*.*";
-            openFileDialog1.FilterIndex = 0;
-            openFileDialog1.RestoreDirectory = true;
-
-            if(openFileDialog1.ShowDialog() == DialogResult.OK)
-            {
-                path = openFileDialog1.FileName;
-            }
+            string path = dialogService.OpenAPKFile();
             pathTxt.Text = path;
-            
         }
 
         private void btnInstall_Click(object sender, EventArgs e)

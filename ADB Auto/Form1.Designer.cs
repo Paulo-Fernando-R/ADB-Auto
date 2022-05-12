@@ -38,6 +38,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btnKill = new System.Windows.Forms.Button();
             this.discBtn = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.listBox2 = new System.Windows.Forms.ListBox();
@@ -50,8 +51,6 @@
             this.btnSearch = new System.Windows.Forms.Button();
             this.pathTxt = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.btnKill = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -185,6 +184,21 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(472, 283);
             this.panel2.TabIndex = 3;
+            // 
+            // btnKill
+            // 
+            this.btnKill.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnKill.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(12)))), ((int)(((byte)(22)))));
+            this.btnKill.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnKill.Font = new System.Drawing.Font("Microsoft Tai Le", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnKill.ForeColor = System.Drawing.Color.DarkGray;
+            this.btnKill.Location = new System.Drawing.Point(240, 238);
+            this.btnKill.Name = "btnKill";
+            this.btnKill.Size = new System.Drawing.Size(215, 34);
+            this.btnKill.TabIndex = 8;
+            this.btnKill.Text = "Matar processo";
+            this.btnKill.UseVisualStyleBackColor = false;
+            this.btnKill.Click += new System.EventHandler(this.btnKill_Click);
             // 
             // discBtn
             // 
@@ -322,7 +336,7 @@
             this.btnSearch.TabIndex = 7;
             this.btnSearch.Text = "Buscar";
             this.btnSearch.UseVisualStyleBackColor = true;
-            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            this.btnSearch.Click += new System.EventHandler(this.BtnSearchAPK_Click);
             // 
             // pathTxt
             // 
@@ -348,25 +362,6 @@
             this.label4.Size = new System.Drawing.Size(117, 23);
             this.label4.TabIndex = 5;
             this.label4.Text = "Instalar apps";
-            // 
-            // openFileDialog1
-            // 
-            this.openFileDialog1.FileName = "openFileDialog1";
-            // 
-            // btnKill
-            // 
-            this.btnKill.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnKill.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(12)))), ((int)(((byte)(22)))));
-            this.btnKill.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnKill.Font = new System.Drawing.Font("Microsoft Tai Le", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnKill.ForeColor = System.Drawing.Color.DarkGray;
-            this.btnKill.Location = new System.Drawing.Point(240, 238);
-            this.btnKill.Name = "btnKill";
-            this.btnKill.Size = new System.Drawing.Size(215, 34);
-            this.btnKill.TabIndex = 8;
-            this.btnKill.Text = "Matar processo";
-            this.btnKill.UseVisualStyleBackColor = false;
-            this.btnKill.Click += new System.EventHandler(this.btnKill_Click);
             // 
             // Form1
             // 
@@ -417,7 +412,6 @@
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.TextBox pathTxt;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ProgressBar progressBar1;
