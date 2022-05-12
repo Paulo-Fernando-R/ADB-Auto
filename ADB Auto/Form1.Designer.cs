@@ -198,7 +198,7 @@
             this.btnKill.TabIndex = 8;
             this.btnKill.Text = "Matar processo";
             this.btnKill.UseVisualStyleBackColor = false;
-            this.btnKill.Click += new System.EventHandler(this.btnKill_Click);
+            this.btnKill.Click += new System.EventHandler(this.BtnKill_Click);
             // 
             // discBtn
             // 

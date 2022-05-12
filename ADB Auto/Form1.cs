@@ -1,9 +1,9 @@
 ﻿using ADB_Auto.Repositories;
 using ADB_Auto.Repositories.Interfaces;
 using ADB_Auto.Services;
+using ADB_Auto.Services.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -13,12 +13,14 @@ namespace ADB_Auto
     {
         private readonly DialogService dialogService = new DialogService();
         private readonly IIPRespository ipRepository;
+        private readonly IADBService adbService;
 
         public Form1()
         {
             InitializeComponent();
 
             ipRepository = new IPRepository();
+            adbService = new ADBService();
 
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
@@ -44,21 +46,7 @@ namespace ADB_Auto
 
         private void PickIpsInReturn()
         {
-
-            Process cmd = new Process();
-            cmd.StartInfo.FileName = "cmd.exe";
-            cmd.StartInfo.RedirectStandardInput = true;
-            cmd.StartInfo.RedirectStandardOutput = true;
-            cmd.StartInfo.CreateNoWindow = true;
-            cmd.StartInfo.UseShellExecute = false;
-
-            cmd.Start();
-            cmd.StandardInput.WriteLine("cls");
-            cmd.StandardInput.WriteLine("adb devices");
-            cmd.StandardInput.Flush();
-            cmd.StandardInput.Close();
-
-            string result = cmd.StandardOutput.ReadToEnd();
+            string result = adbService.GetAllConnectedDevices();
 
             List<string> ips = new List<string>();
             IList<string> lines = ipRepository.GetAll();
@@ -87,21 +75,7 @@ namespace ADB_Auto
 
             string ip = listBox1.SelectedItem.ToString().Trim() + ":5555";
 
-            Process cmd = new Process();
-            cmd.StartInfo.FileName = "cmd.exe";
-            cmd.StartInfo.RedirectStandardInput = true;
-            cmd.StartInfo.RedirectStandardOutput = true;
-            cmd.StartInfo.CreateNoWindow = true;
-            cmd.StartInfo.UseShellExecute = false;
-
-            cmd.Start();
-
-            cmd.StandardInput.WriteLine("adb tcpip 5555");
-            cmd.StandardInput.WriteLine("adb connect " + ip);
-            cmd.StandardInput.Flush();
-            cmd.StandardInput.Close();
-
-            string result = cmd.StandardOutput.ReadToEnd();
+            string result = adbService.ConnectToDevice(ip);
         }
 
         private void Disconnect()
@@ -111,17 +85,8 @@ namespace ADB_Auto
                 dialogService.ShowMessage("Selecione um dispositivo");
                 return;
             }
-            Process cmd = new Process();
-            cmd.StartInfo.FileName = "cmd.exe";
-            cmd.StartInfo.RedirectStandardInput = true;
-            cmd.StartInfo.RedirectStandardOutput = true;
-            cmd.StartInfo.CreateNoWindow = true;
-            cmd.StartInfo.UseShellExecute = false;
 
-            cmd.Start();
-            cmd.StandardInput.WriteLine("adb disconnect " + listBox2.SelectedItem.ToString());
-            cmd.StandardInput.Flush();
-            cmd.StandardInput.Close();
+            adbService.DisconnectFromDevice(listBox2.SelectedItem.ToString());
             PickIpsInReturn();
         }
 
@@ -176,22 +141,12 @@ namespace ADB_Auto
         private async void InstallApk(string path, bool back)
         {
             progressBar1.Visible = true;
-            Process cmd = new Process();
-            cmd.StartInfo.FileName = "cmd.exe";
-            cmd.StartInfo.RedirectStandardInput = true;
-            cmd.StartInfo.RedirectStandardOutput = true;
-            cmd.StartInfo.CreateNoWindow = true;
-            cmd.StartInfo.UseShellExecute = false;
-
-            cmd.Start();
-            cmd.StandardInput.WriteLine("adb -s " + listBox2.SelectedItem.ToString() + ":5555 " + "install " + path);
-            cmd.StandardInput.Flush();
-            cmd.StandardInput.Close();
+            string message = adbService.InstallApk(listBox2.SelectedItem.ToString(), path, back);
 
             await Task.Delay(3000);
 
             if (!back)
-                dialogService.ShowMessage(cmd.StandardOutput.ReadToEnd());
+                dialogService.ShowMessage(message);
 
             progressBar1.Visible=false;
         }
@@ -259,80 +214,11 @@ namespace ADB_Auto
             InstallApk(pathTxt.Text, false);
         }
 
-        private void btnKill_Click(object sender, EventArgs e)
+        private void BtnKill_Click(object sender, EventArgs e)
         {
-            Process cmd = new Process();
-            cmd.StartInfo.FileName = "cmd.exe";
-            cmd.StartInfo.RedirectStandardInput = true;
-            cmd.StartInfo.RedirectStandardOutput = true;
-            cmd.StartInfo.CreateNoWindow = true;
-            cmd.StartInfo.UseShellExecute = false;
-
-            cmd.Start();
-
-            cmd.StandardInput.WriteLine("adb start-server");
-            cmd.StandardInput.WriteLine("adb kill-server");
-            cmd.StandardInput.Flush();
-            cmd.StandardInput.Close();
+            adbService.KillServer();
             Application.Restart();
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        //codigo exemplo
-        /*private void button1_Click(object sender, EventArgs e)
-        {
-             Process cmd = new Process();
-             cmd.StartInfo.FileName = "cmd.exe";
-             cmd.StartInfo.RedirectStandardInput = true;
-             cmd.StartInfo.RedirectStandardOutput = true;
-             cmd.StartInfo.CreateNoWindow = true;
-             cmd.StartInfo.UseShellExecute = false;
-
-             cmd.Start();
-
-             cmd.StandardInput.WriteLine("adb tcpip 5555");
-             cmd.StandardInput.WriteLine("adb connect 192.168.0.2:5555");
-             cmd.StandardInput.Flush();
-             cmd.StandardInput.Close();
-
-             File.WriteAllText("result.txt", cmd.StandardOutput.ReadToEnd());
-
-            int count = 0;
-            string result = "";
-            foreach (string line in System.IO.File.ReadAllLines("result.txt"))
-            {
-                if(count == 7)
-                    result = line;
-                count++;
-            }
-
-            MessageBox.Show(result);
-
-            var array = result.ToArray();
-            string numeros = "";
-            foreach (var item in array)
-            {
-                if((int.TryParse(item.ToString(), out int parsed)) || (item == '.') || item == ':')
-                {
-                    numeros = numeros + item;
-                }
-            }
-
-            MessageBox.Show(numeros);
-
-        }*/
     }
 }

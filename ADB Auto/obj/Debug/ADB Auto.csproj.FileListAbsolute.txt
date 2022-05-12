@@ -9,3 +9,14 @@ D:\Bibliotecas\Documentos\.Net\ADB Auto\ADB Auto\obj\Debug\ADB Auto.csproj.Gener
 D:\Bibliotecas\Documentos\.Net\ADB Auto\ADB Auto\obj\Debug\ADB Auto.csproj.CoreCompileInputs.cache
 D:\Bibliotecas\Documentos\.Net\ADB Auto\ADB Auto\obj\Debug\ADB Auto.exe
 D:\Bibliotecas\Documentos\.Net\ADB Auto\ADB Auto\obj\Debug\ADB Auto.pdb
+C:\Users\Usuario\Documents\GitHub\ADB-Auto\ADB Auto\bin\Debug\ADB Auto.exe.config
+C:\Users\Usuario\Documents\GitHub\ADB-Auto\ADB Auto\bin\Debug\ADB Auto.exe
+C:\Users\Usuario\Documents\GitHub\ADB-Auto\ADB Auto\bin\Debug\ADB Auto.pdb
+C:\Users\Usuario\Documents\GitHub\ADB-Auto\ADB Auto\obj\Debug\ADB Auto.csproj.AssemblyReference.cache
+C:\Users\Usuario\Documents\GitHub\ADB-Auto\ADB Auto\obj\Debug\ADB Auto.csproj.SuggestedBindingRedirects.cache
+C:\Users\Usuario\Documents\GitHub\ADB-Auto\ADB Auto\obj\Debug\ADB_Auto.Form1.resources
+C:\Users\Usuario\Documents\GitHub\ADB-Auto\ADB Auto\obj\Debug\ADB_Auto.Properties.Resources.resources
+C:\Users\Usuario\Documents\GitHub\ADB-Auto\ADB Auto\obj\Debug\ADB Auto.csproj.GenerateResource.cache
+C:\Users\Usuario\Documents\GitHub\ADB-Auto\ADB Auto\obj\Debug\ADB Auto.csproj.CoreCompileInputs.cache
+C:\Users\Usuario\Documents\GitHub\ADB-Auto\ADB Auto\obj\Debug\ADB Auto.exe
+C:\Users\Usuario\Documents\GitHub\ADB-Auto\ADB Auto\obj\Debug\ADB Auto.pdb
