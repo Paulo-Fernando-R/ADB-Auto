@@ -81,7 +81,7 @@ namespace ADB_Auto
         {
             if (listBox1.SelectedItem == null)
             {
-                MessageBox.Show("Selecione um dispositivo");
+                dialogService.ShowMessage("Selecione um dispositivo");
                 return;
             }
 
@@ -108,7 +108,7 @@ namespace ADB_Auto
         {
             if (listBox2.SelectedItem == null)
             {
-                MessageBox.Show("Selecione um dispositivo");
+                dialogService.ShowMessage("Selecione um dispositivo");
                 return;
             }
             Process cmd = new Process();
@@ -129,14 +129,14 @@ namespace ADB_Auto
         {
             if (ipTxt.Text.Length < 7)
             {
-                MessageBox.Show("Insira um endereço IP");
+                dialogService.ShowMessage("Insira um endereço IP");
                 return;
             }
 
             bool isSaved = ipRepository.Save(ipTxt.Text);
             if (!isSaved)
             {
-                MessageBox.Show("Tente novamente");
+                dialogService.ShowMessage("Tente novamente");
                 return;
             }
 
@@ -154,7 +154,7 @@ namespace ADB_Auto
 
             if (listBox1.SelectedItem == null)
             {
-                MessageBox.Show("Selecione um dispositivo");
+                dialogService.ShowMessage("Selecione um dispositivo");
                 return;
             }
 
@@ -191,7 +191,7 @@ namespace ADB_Auto
             await Task.Delay(3000);
 
             if (!back)
-                MessageBox.Show(cmd.StandardOutput.ReadToEnd());
+                dialogService.ShowMessage(cmd.StandardOutput.ReadToEnd());
 
             progressBar1.Visible=false;
         }
@@ -243,7 +243,7 @@ namespace ADB_Auto
 
             if (listBox2.SelectedItem == null)
             {
-                MessageBox.Show("Escolha um dispositivo primeiro");
+                dialogService.ShowMessage("Escolha um dispositivo primeiro");
                 return;
             }
 

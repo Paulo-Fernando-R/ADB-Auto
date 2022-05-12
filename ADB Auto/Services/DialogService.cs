@@ -32,5 +32,10 @@ namespace ADB_Auto.Services
 
             return true;
         }
+
+        public void ShowMessage(string message)
+        {
+            MessageBox.Show(message);
+        }
     }
 }
