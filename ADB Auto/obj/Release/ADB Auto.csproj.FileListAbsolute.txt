@@ -9,3 +9,14 @@ D:\Bibliotecas\Documentos\.Net\ADB Auto\ADB Auto\obj\Release\ADB Auto.csproj.Gen
 D:\Bibliotecas\Documentos\.Net\ADB Auto\ADB Auto\obj\Release\ADB Auto.csproj.CoreCompileInputs.cache
 D:\Bibliotecas\Documentos\.Net\ADB Auto\ADB Auto\obj\Release\ADB Auto.exe
 D:\Bibliotecas\Documentos\.Net\ADB Auto\ADB Auto\obj\Release\ADB Auto.pdb
+C:\Users\Usuario\Documents\GitHub\ADB-Auto\ADB Auto\bin\Release\ADB Auto.exe.config
+C:\Users\Usuario\Documents\GitHub\ADB-Auto\ADB Auto\bin\Release\ADB Auto.exe
+C:\Users\Usuario\Documents\GitHub\ADB-Auto\ADB Auto\bin\Release\ADB Auto.pdb
+C:\Users\Usuario\Documents\GitHub\ADB-Auto\ADB Auto\obj\Release\ADB Auto.csproj.AssemblyReference.cache
+C:\Users\Usuario\Documents\GitHub\ADB-Auto\ADB Auto\obj\Release\ADB Auto.csproj.SuggestedBindingRedirects.cache
+C:\Users\Usuario\Documents\GitHub\ADB-Auto\ADB Auto\obj\Release\ADB_Auto.Form1.resources
+C:\Users\Usuario\Documents\GitHub\ADB-Auto\ADB Auto\obj\Release\ADB_Auto.Properties.Resources.resources
+C:\Users\Usuario\Documents\GitHub\ADB-Auto\ADB Auto\obj\Release\ADB Auto.csproj.GenerateResource.cache
+C:\Users\Usuario\Documents\GitHub\ADB-Auto\ADB Auto\obj\Release\ADB Auto.csproj.CoreCompileInputs.cache
+C:\Users\Usuario\Documents\GitHub\ADB-Auto\ADB Auto\obj\Release\ADB Auto.exe
+C:\Users\Usuario\Documents\GitHub\ADB-Auto\ADB Auto\obj\Release\ADB Auto.pdb
