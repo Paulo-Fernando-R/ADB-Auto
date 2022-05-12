@@ -11,7 +11,7 @@ namespace ADB_Auto.Repositories
 
         public IList<string> GetAll()
         {
-            if (File.Exists(FILE_NAME))
+            if (!File.Exists(FILE_NAME))
             {
                 return new List<string>();
             }
