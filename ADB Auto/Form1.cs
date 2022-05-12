@@ -1,8 +1,9 @@
-﻿using ADB_Auto.Services;
+﻿using ADB_Auto.Repositories;
+using ADB_Auto.Repositories.Interfaces;
+using ADB_Auto.Services;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -11,21 +12,20 @@ namespace ADB_Auto
     public partial class Form1 : Form
     {
         private readonly DialogService dialogService = new DialogService();
+        private readonly IIPRespository ipRepository;
 
         public Form1()
         {
             InitializeComponent();
+
+            ipRepository = new IPRepository();
+
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            if (!File.Exists("SaveIPs.txt"))
-            {
-                StreamWriter sw = new StreamWriter("SaveIPs.txt");
-                sw.Close();
-            }
             FillListIPs();
             PickIpsInReturn();
             Application.EnableVisualStyles();
@@ -34,7 +34,9 @@ namespace ADB_Auto
         private void FillListIPs()
         {
             listBox1.Items.Clear();
-            foreach (string line in System.IO.File.ReadAllLines("SaveIPs.txt"))
+
+            IList<string> lines = ipRepository.GetAll();
+            foreach (string line in lines)
             {
                 listBox1.Items.Add(line);
             }
@@ -59,8 +61,8 @@ namespace ADB_Auto
             string result = cmd.StandardOutput.ReadToEnd();
 
             List<string> ips = new List<string>();
-
-            foreach (string line in System.IO.File.ReadAllLines("SaveIPs.txt"))
+            IList<string> lines = ipRepository.GetAll();
+            foreach (string line in lines)
             {
                 if (result.Contains(line))
                 {
@@ -131,21 +133,15 @@ namespace ADB_Auto
                 return;
             }
 
-            try
-            {
-                StreamWriter sw = new StreamWriter("SaveIPs.txt", true);
-                sw.WriteLine(ipTxt.Text);
-                sw.Close();
-            }
-            catch (Exception)
+            bool isSaved = ipRepository.Save(ipTxt.Text);
+            if (!isSaved)
             {
                 MessageBox.Show("Tente novamente");
+                return;
             }
-            finally
-            {
-                FillListIPs();
-                ipTxt.Text = "";
-            }
+
+            FillListIPs();
+            ipTxt.Text = "";
         }
 
         private void DeleteDevice()
@@ -162,7 +158,8 @@ namespace ADB_Auto
                 return;
             }
 
-            foreach (string line in System.IO.File.ReadAllLines("SaveIPs.txt"))
+            IList<string> lines = ipRepository.GetAll();
+            foreach (string line in lines)
             {
                 list.Add(line);
             }
@@ -172,15 +169,7 @@ namespace ADB_Auto
                 list.Remove(listBox1.SelectedItem.ToString());
             }
 
-            StreamWriter sw = new StreamWriter("SaveIPs.txt");
-
-            foreach (var item in list)
-            {
-                sw.WriteLine(item);
-            }
-
-            sw.Close();
-
+            ipRepository.Remove(list);
             FillListIPs();
         }
 
@@ -250,13 +239,7 @@ namespace ADB_Auto
 
         private void btnInstall_Click(object sender, EventArgs e)
         {
-            MessageBoxButtons mb = MessageBoxButtons.YesNo;
-
-            DialogResult result = MessageBox.Show(
-                    "Se optar por instalar em segundo plano não terá o feedback quando terminar a instação",
-                    "Deseja instalar em segundo plano?",
-                    mb
-                );
+            bool result = dialogService.QuestionDialog("Se optar por instalar em segundo plano não terá o feedback quando terminar a instação", "Deseja instalar em segundo plano?");
 
             if (listBox2.SelectedItem == null)
             {
@@ -267,7 +250,7 @@ namespace ADB_Auto
             if (pathTxt.Text == "")
                 return;
 
-            if (result == DialogResult.Yes)
+            if (result)
             {
                 InstallApk(pathTxt.Text, true);
                 return;
