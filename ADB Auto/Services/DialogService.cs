@@ -19,5 +19,18 @@ namespace ADB_Auto.Services
 
             return string.Empty;
         }
+
+        public bool QuestionDialog(string message, string caption)
+        {
+            MessageBoxButtons mb = MessageBoxButtons.YesNo;
+            DialogResult result = MessageBox.Show(message, caption, mb);
+
+            if (result == DialogResult.No)
+            {
+                return false;
+            }
+
+            return true;
+        }
     }
 }

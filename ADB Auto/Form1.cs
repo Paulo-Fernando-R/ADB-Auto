@@ -150,18 +150,10 @@ namespace ADB_Auto
 
         private void DeleteDevice()
         {
-            MessageBoxButtons mb = MessageBoxButtons.YesNo;
-
-            DialogResult result = MessageBox.Show(
-                    "Não é recomendado excluir um dispositivo conectado ou que está conectando",
-                    "Deseja excluir este dispositivo?",
-                    mb
-                );
-
-            if (result == DialogResult.No)
-            {
+            bool result = dialogService.QuestionDialog("Não é recomendado excluir um dispositivo conectado ou que está conectando", "Deseja excluir este dispositivo?");
+            if (!result)
                 return;
-            }
+
             List<string> list = new List<string>();
 
             if (listBox1.SelectedItem == null)
