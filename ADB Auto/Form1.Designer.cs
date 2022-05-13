@@ -107,7 +107,7 @@
             this.addBtn.TabIndex = 5;
             this.addBtn.Text = "Adicionar";
             this.addBtn.UseVisualStyleBackColor = false;
-            this.addBtn.Click += new System.EventHandler(this.button1_Click_1);
+            this.addBtn.Click += new System.EventHandler(this.BtnAddIP_Click);
             // 
             // ipTxt
             // 
@@ -151,7 +151,6 @@
             this.label1.Size = new System.Drawing.Size(166, 23);
             this.label1.TabIndex = 1;
             this.label1.Text = "Dispositivos salvos";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // listBox1
             // 

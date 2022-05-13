@@ -1,9 +1,12 @@
-﻿using ADB_Auto.Repositories;
+﻿using ADB_Auto.Models;
+using ADB_Auto.Repositories;
 using ADB_Auto.Repositories.Interfaces;
 using ADB_Auto.Services;
 using ADB_Auto.Services.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Net;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -14,6 +17,7 @@ namespace ADB_Auto
         private readonly DialogService dialogService = new DialogService();
         private readonly IIPRespository ipRepository;
         private readonly IADBService adbService;
+        private readonly BindingList<InternetProtocol> savedIPs;
 
         public Form1()
         {
@@ -22,26 +26,19 @@ namespace ADB_Auto
             ipRepository = new IPRepository();
             adbService = new ADBService();
 
+            savedIPs = new BindingList<InternetProtocol>(ipRepository.GetAll());
+            listBox1.DataSource = savedIPs;
+            listBox1.DisplayMember = "IP";
+            listBox1.ValueMember = "IP";
+
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            FillListIPs();
             PickIpsInReturn();
             Application.EnableVisualStyles();
-        }
-
-        private void FillListIPs()
-        {
-            listBox1.Items.Clear();
-
-            IList<string> lines = ipRepository.GetAll();
-            foreach (string line in lines)
-            {
-                listBox1.Items.Add(line);
-            }
         }
 
         private void PickIpsInReturn()
@@ -49,12 +46,11 @@ namespace ADB_Auto
             string result = adbService.GetAllConnectedDevices();
 
             List<string> ips = new List<string>();
-            IList<string> lines = ipRepository.GetAll();
-            foreach (string line in lines)
+            foreach (InternetProtocol line in savedIPs)
             {
-                if (result.Contains(line))
+                if (result.Contains(line.IP))
                 {
-                    ips.Add(line);
+                    ips.Add(line.IP);
                 }
             }
 
@@ -74,8 +70,7 @@ namespace ADB_Auto
             }
 
             string ip = listBox1.SelectedItem.ToString().Trim() + ":5555";
-
-            string result = adbService.ConnectToDevice(ip);
+            adbService.ConnectToDevice(ip);
         }
 
         private void Disconnect()
@@ -92,20 +87,23 @@ namespace ADB_Auto
 
         private void SaveIPs()
         {
-            if (ipTxt.Text.Length < 7)
+            string ip = ipTxt.Text;
+            if (!IPAddress.TryParse(ip, out _))
             {
-                dialogService.ShowMessage("Insira um endereço IP");
+                dialogService.ShowMessage("Insira um endereço IP válido");
                 return;
             }
 
-            bool isSaved = ipRepository.Save(ipTxt.Text);
+            InternetProtocol internetProtocol = new InternetProtocol(ip);
+
+            bool isSaved = ipRepository.Save(internetProtocol);
             if (!isSaved)
             {
                 dialogService.ShowMessage("Tente novamente");
                 return;
             }
 
-            FillListIPs();
+            savedIPs.Add(internetProtocol);
             ipTxt.Text = "";
         }
 
@@ -115,27 +113,15 @@ namespace ADB_Auto
             if (!result)
                 return;
 
-            List<string> list = new List<string>();
-
             if (listBox1.SelectedItem == null)
             {
                 dialogService.ShowMessage("Selecione um dispositivo");
                 return;
             }
 
-            IList<string> lines = ipRepository.GetAll();
-            foreach (string line in lines)
-            {
-                list.Add(line);
-            }
-
-            if (list.Contains(listBox1.SelectedItem.ToString()))
-            {
-                list.Remove(listBox1.SelectedItem.ToString());
-            }
-
-            ipRepository.Remove(list);
-            FillListIPs();
+            int index = listBox1.SelectedIndex;
+            savedIPs.RemoveAt(index);
+            ipRepository.Remove(savedIPs);
         }
 
         private async void InstallApk(string path, bool back)
@@ -151,7 +137,7 @@ namespace ADB_Auto
             progressBar1.Visible=false;
         }
 
-        private void button1_Click_1(object sender, EventArgs e)
+        private void BtnAddIP_Click(object sender, EventArgs e)
         {
             SaveIPs();
         }
@@ -174,11 +160,6 @@ namespace ADB_Auto
             {
                 e.Handled = true;
             }
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void button1_Click(object sender, EventArgs e)

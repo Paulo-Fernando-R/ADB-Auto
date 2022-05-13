@@ -1,4 +1,5 @@
-﻿using ADB_Auto.Repositories.Interfaces;
+﻿using ADB_Auto.Models;
+using ADB_Auto.Repositories.Interfaces;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -9,35 +10,35 @@ namespace ADB_Auto.Repositories
     {
         private const string FILE_NAME = "SaveIPs.txt";
 
-        public IList<string> GetAll()
+        public IList<InternetProtocol> GetAll()
         {
             if (!File.Exists(FILE_NAME))
             {
-                return new List<string>();
+                return new List<InternetProtocol>();
             }
 
-            IList<string> lines = File.ReadAllLines(FILE_NAME).ToList();
-            return lines;
+            IList<InternetProtocol> internetProtocols = File.ReadAllLines(FILE_NAME).Select(x => new InternetProtocol(x)).ToList();
+            return internetProtocols;
         }
 
-        public void Remove(IList<string> ips)
+        public void Remove(IList<InternetProtocol> ips)
         {
             StreamWriter sw = new StreamWriter(FILE_NAME);
 
-            foreach (string ip in ips)
+            foreach (InternetProtocol ip in ips)
             {
-                sw.WriteLine(ip);
+                sw.WriteLine(ip.IP);
             }
 
             sw.Close();
         }
 
-        public bool Save(string ip)
+        public bool Save(InternetProtocol ip)
         {
             try
             {
                 StreamWriter sw = new StreamWriter(FILE_NAME, true);
-                sw.WriteLine(ip);
+                sw.WriteLine(ip.IP);
                 sw.Close();
 
                 return true;
