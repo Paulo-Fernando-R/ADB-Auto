@@ -63,6 +63,12 @@
     <Compile Include="Services\ADBService.cs" />
     <Compile Include="Services\DialogService.cs" />
     <Compile Include="Services\Interfaces\IADBService.cs" />
+    <Compile Include="TestCroco.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TestCroco.Designer.cs">
+      <DependentUpon>TestCroco.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -75,6 +81,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="TestCroco.resx">
+      <DependentUpon>TestCroco.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
