@@ -1,0 +1,43 @@
+﻿<Window x:Class="ADB_Auto_WPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ADB_Auto_WPF"
+        xmlns:ui="http://schemas.modernwpf.com/2019"
+        mc:Ignorable="d"
+        Title="ADB Tools" Height="450" Width="700"
+        MinWidth="700" MinHeight="450"
+        Loaded="Window_Loaded"
+        ui:WindowHelper.UseModernWindowStyle="True">
+
+    <Window.Resources>
+        <SolidColorBrush x:Key="NavigationViewSelectionIndicatorForeground" Color="#A31955"/>
+    </Window.Resources>
+    
+    <Grid>
+        <ui:NavigationView x:Name="NavView" PaneDisplayMode="Left" IsSettingsVisible="False" OpenPaneLength="215" IsBackEnabled="False" IsBackButtonVisible="Collapsed" SelectionChanged="NavigationView_SelectionChanged">
+            <ui:NavigationView.Header >
+                <AccessText Text="ADB Tools"/>
+            </ui:NavigationView.Header>
+
+            <ui:NavigationView.MenuItems>
+                <ui:NavigationViewItem Tag="AddDevice" Content="Adicionar Dispositivo" Icon="add"></ui:NavigationViewItem>
+                <ui:NavigationViewItem Tag="SavedDevices" Content="Dispositivos Salvos" Icon="save"></ui:NavigationViewItem>
+                <ui:NavigationViewItem Tag="InstallApps" Content="Instalar Aplicativos">
+                    <ui:NavigationViewItem.Icon>
+                        <ui:FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE896;"/>
+                    </ui:NavigationViewItem.Icon>
+                </ui:NavigationViewItem>
+            </ui:NavigationView.MenuItems>
+
+            <ui:NavigationView.FooterMenuItems>
+                <ui:NavigationViewItem Tag="About" Content="Sobre" Icon="help"></ui:NavigationViewItem>
+            </ui:NavigationView.FooterMenuItems>
+
+            <ScrollViewer>
+                <Frame x:Name="ContentFrame" Padding="12,0,12,12" IsTabStop="False" NavigationUIVisibility="Hidden"/>
+            </ScrollViewer>
+        </ui:NavigationView>
+    </Grid>
+</Window>

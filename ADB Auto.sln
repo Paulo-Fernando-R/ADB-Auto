@@ -5,6 +5,10 @@ VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ADB Auto", "ADB Auto\ADB Auto.csproj", "{4886F6C3-7B11-456C-99F2-80E1E5F3B81B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ADB-Auto-WPF", "ADB-Auto-WPF\ADB-Auto-WPF.csproj", "{430496EC-B3AA-476C-A27F-FEB758A121EA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ADB.Core", "ADB.Core\ADB.Core.csproj", "{1B184975-A076-4B92-9721-9706AE76DB4C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{4886F6C3-7B11-456C-99F2-80E1E5F3B81B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4886F6C3-7B11-456C-99F2-80E1E5F3B81B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4886F6C3-7B11-456C-99F2-80E1E5F3B81B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{430496EC-B3AA-476C-A27F-FEB758A121EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{430496EC-B3AA-476C-A27F-FEB758A121EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{430496EC-B3AA-476C-A27F-FEB758A121EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{430496EC-B3AA-476C-A27F-FEB758A121EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B184975-A076-4B92-9721-9706AE76DB4C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B184975-A076-4B92-9721-9706AE76DB4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B184975-A076-4B92-9721-9706AE76DB4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B184975-A076-4B92-9721-9706AE76DB4C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

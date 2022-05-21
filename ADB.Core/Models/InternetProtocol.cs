@@ -1,4 +1,4 @@
-﻿namespace ADB_Auto.Models
+﻿namespace ADB.Core.Models
 {
     public class InternetProtocol
     {

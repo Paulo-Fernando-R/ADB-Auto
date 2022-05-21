@@ -1,10 +1,10 @@
-﻿using ADB_Auto.Models;
-using ADB_Auto.Repositories.Interfaces;
+﻿using ADB.Core.Models;
+using ADB.Core.Repositories.Interfaces;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace ADB_Auto.Repositories
+namespace ADB.Core.Repositories
 {
     public class IPRepository : IIPRespository
     {

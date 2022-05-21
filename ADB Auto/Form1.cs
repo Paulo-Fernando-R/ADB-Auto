@@ -1,6 +1,6 @@
-﻿using ADB_Auto.Models;
-using ADB_Auto.Repositories;
-using ADB_Auto.Repositories.Interfaces;
+﻿using ADB.Core.Models;
+using ADB.Core.Repositories;
+using ADB.Core.Repositories.Interfaces;
 using ADB_Auto.Services;
 using ADB_Auto.Services.Interfaces;
 using System;

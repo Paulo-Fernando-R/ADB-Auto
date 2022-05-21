@@ -1,7 +1,7 @@
-﻿using ADB_Auto.Models;
+﻿using ADB.Core.Models;
 using System.Collections.Generic;
 
-namespace ADB_Auto.Repositories.Interfaces
+namespace ADB.Core.Repositories.Interfaces
 {
     public interface IIPRespository
     {
