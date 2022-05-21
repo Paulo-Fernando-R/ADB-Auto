@@ -1,0 +1,47 @@
+﻿<UserControl x:Class="ADB_Auto_WPF.Components.IPController"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ADB_Auto_WPF.Components"
+             xmlns:ui="http://schemas.modernwpf.com/2019"
+             mc:Ignorable="d" 
+             MinWidth="220"
+             Height="40" Width="220">
+
+    <UserControl.Resources>
+        <Style TargetType="{x:Type ui:FontIcon}">
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Cursor" Value="Hand"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+    
+    <Grid VerticalAlignment="Center">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="30" MinWidth="30"/>
+            <ColumnDefinition Width="30" MinWidth="30"/>
+            <ColumnDefinition Width="24" MinWidth="24"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock 
+            Foreground="White" 
+            FontSize="17" 
+            Text="192.168.0.1"/>
+
+        <ui:FontIcon 
+            Grid.Column="1" 
+            Foreground="White" 
+            FontFamily="Segoe MDL2 Assets" 
+            Glyph="&#xE701;"/>
+        
+        <ui:FontIcon 
+            Grid.Column="2" 
+            Foreground="White" 
+            FontFamily="Segoe MDL2 Assets" 
+            Glyph="&#xE74D;"/>
+    </Grid>
+</UserControl>

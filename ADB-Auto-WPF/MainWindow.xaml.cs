@@ -51,6 +51,10 @@ namespace ADB_Auto_WPF
             {
                 ContentFrame.Navigate(new AddDevicePage(_ipRepository));
             }
+            else if (navItemTag.Equals("SavedDevices"))
+            {
+                ContentFrame.Navigate(new SavedDevicesPage());
+            }
             else
             {
                 (string Tag, Type Page) item = _pages.FirstOrDefault(p => p.Tag.Equals(navItemTag));
