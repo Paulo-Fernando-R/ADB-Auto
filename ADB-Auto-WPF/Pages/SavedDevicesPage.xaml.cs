@@ -32,14 +32,14 @@ namespace ADB_Auto_WPF.Pages
             foreach (InternetProtocol savedIP in _savedDevices)
             {
                 IPController ipController = new IPController(savedIP);
-                ipController.OnDelete += IpController_OnDelete;
+                ipController.OnSecondaryButton += SavedIP_OnSecondaryButton;
                 PanelSavedDevices.Children.Add(ipController);
             }
         }
 
-        private async void IpController_OnDelete(object sender, RoutedEventArgs e)
+        private async void SavedIP_OnSecondaryButton(object sender, RoutedEventArgs e)
         {
-            ContentDialogResult dialogResult = await QuestionDialog.ShowAsync();
+            ContentDialogResult dialogResult = await RemoveIPDialog.ShowAsync();
             if (dialogResult != ContentDialogResult.Primary)
                 return;
 
@@ -71,13 +71,18 @@ namespace ADB_Auto_WPF.Pages
                 _connectedDevices.Add(savedDevice);
 
                 IPController connectedIP = new IPController(savedDevice);
-                connectedIP.OnDelete += ConnectedIP_OnDelete;
+                connectedIP.OnSecondaryButton += ConnectedIP_OnSecondaryButton;
+                connectedIP.ShowPrimaryButton = Visibility.Hidden;
                 PanelConnectedDevices.Children.Add(connectedIP);
             }
         }
 
-        private void ConnectedIP_OnDelete(object sender, RoutedEventArgs e)
+        private async void ConnectedIP_OnSecondaryButton(object sender, RoutedEventArgs e)
         {
+            ContentDialogResult dialogResult = await DisconnectIPDialog.ShowAsync();
+            if (dialogResult != ContentDialogResult.Primary)
+                return;
+
             InternetProtocol connectedDevice = sender as InternetProtocol;
             int index = _connectedDevices.IndexOf(connectedDevice);
 

@@ -1,4 +1,5 @@
-﻿<UserControl x:Class="ADB_Auto_WPF.Components.IPController"
+﻿<UserControl x:Name="uc"
+             x:Class="ADB_Auto_WPF.Components.IPController"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -36,13 +37,15 @@
             Grid.Column="1" 
             Foreground="White" 
             FontFamily="Segoe MDL2 Assets" 
-            Glyph="&#xE701;"/>
+            Glyph="&#xE701;"
+            Visibility="{Binding ElementName=uc, Path=ShowPrimaryButton}"/>
         
         <ui:FontIcon 
             Grid.Column="2" 
             Foreground="White" 
             FontFamily="Segoe MDL2 Assets" 
             Glyph="&#xE74D;"
-            MouseLeftButtonDown="FontIcon_MouseLeftButtonDown"/>
+            MouseLeftButtonDown="FontIcon_MouseLeftButtonDown"
+            Visibility="{Binding ElementName=uc, Path=ShowSecondaryButton}"/>
     </Grid>
 </UserControl>

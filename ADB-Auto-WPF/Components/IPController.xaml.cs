@@ -10,7 +10,22 @@ namespace ADB_Auto_WPF.Components
     /// </summary>
     public partial class IPController : UserControl
     {
-        public event RoutedEventHandler OnDelete;
+        public static readonly DependencyProperty ShowPrimaryButtonDependency = DependencyProperty.Register("ShowPrimaryButton", typeof(Visibility), typeof(IPController), new PropertyMetadata(Visibility.Visible));
+        public static readonly DependencyProperty ShowSecondaryButtonDependency = DependencyProperty.Register("ShowSecondaryButton", typeof(Visibility), typeof(IPController), new PropertyMetadata(Visibility.Visible));
+
+        public Visibility ShowPrimaryButton
+        {
+            get => (Visibility)GetValue(ShowPrimaryButtonDependency);
+            set => SetValue(ShowPrimaryButtonDependency, value);
+        }
+
+        public Visibility ShowSecondaryButton
+        {
+            get => (Visibility)GetValue(ShowSecondaryButtonDependency);
+            set => SetValue(ShowSecondaryButtonDependency, value);
+        }
+
+        public event RoutedEventHandler OnSecondaryButton;
 
         private readonly InternetProtocol _internetProtocol;
 
@@ -24,7 +39,7 @@ namespace ADB_Auto_WPF.Components
 
         private void FontIcon_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            OnDelete?.Invoke(_internetProtocol, e);
+            OnSecondaryButton?.Invoke(_internetProtocol, e);
         }
     }
 }

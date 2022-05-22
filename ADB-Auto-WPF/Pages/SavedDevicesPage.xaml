@@ -51,11 +51,19 @@
             HorizontalAlignment="Right"/>
 
         <ui:ContentDialog 
-            x:Name="QuestionDialog" 
+            x:Name="RemoveIPDialog" 
             Grid.RowSpan="5" 
             PrimaryButtonText="Sim"
             CloseButtonText="Não" 
             Title="Tem certeza?" 
             Content="O IP será excluído permanentemente!"/>
+
+        <ui:ContentDialog 
+            x:Name="DisconnectIPDialog" 
+            Grid.RowSpan="5" 
+            PrimaryButtonText="Sim"
+            CloseButtonText="Não" 
+            Title="Efetuar desconexão" 
+            Content="O IP será desconectado, deseja prosseguir?"/>
     </Grid>
 </Page>
