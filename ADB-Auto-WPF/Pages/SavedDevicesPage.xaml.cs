@@ -3,7 +3,9 @@ using ADB.Core.Repositories.Interfaces;
 using ADB.Core.Services.Interfaces;
 using ADB_Auto_WPF.Components;
 using ModernWpf.Controls;
+using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Windows;
 
 namespace ADB_Auto_WPF.Pages
@@ -32,9 +34,20 @@ namespace ADB_Auto_WPF.Pages
             foreach (InternetProtocol savedIP in _savedDevices)
             {
                 IPController ipController = new IPController(savedIP);
+                ipController.OnPrimaryButton += SavedIP_OnPrimaryButton;
                 ipController.OnSecondaryButton += SavedIP_OnSecondaryButton;
                 PanelSavedDevices.Children.Add(ipController);
             }
+        }
+
+        private void SavedIP_OnPrimaryButton(object sender, RoutedEventArgs e)
+        {
+            InternetProtocol internetProtocol = sender as InternetProtocol;
+            string result = _adbService.ConnectToDevice(internetProtocol.IP);
+            if (!result.ToLower().Contains("connected"))
+                return;
+
+            LoadConnectedDevices();
         }
 
         private async void SavedIP_OnSecondaryButton(object sender, RoutedEventArgs e)
@@ -89,6 +102,15 @@ namespace ADB_Auto_WPF.Pages
             _adbService.DisconnectFromDevice(connectedDevice.IP);
             _connectedDevices.Remove(connectedDevice);
             PanelConnectedDevices.Children.RemoveAt(index);
+        }
+
+        private async void BtnKill_Click(object sender, RoutedEventArgs e)
+        {
+            _adbService.KillServer();
+
+            await Task.Delay(1000);
+
+            LoadConnectedDevices();
         }
     }
 }

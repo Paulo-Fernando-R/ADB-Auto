@@ -25,6 +25,7 @@ namespace ADB_Auto_WPF.Components
             set => SetValue(ShowSecondaryButtonDependency, value);
         }
 
+        public event RoutedEventHandler OnPrimaryButton;
         public event RoutedEventHandler OnSecondaryButton;
 
         private readonly InternetProtocol _internetProtocol;
@@ -37,9 +38,15 @@ namespace ADB_Auto_WPF.Components
             IPField.Text = internetProtocol.IP;
         }
 
-        private void FontIcon_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void PrimaryButton_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            OnPrimaryButton?.Invoke(_internetProtocol, e);
+        }
+
+        private void SecondaryButton_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             OnSecondaryButton?.Invoke(_internetProtocol, e);
         }
+
     }
 }

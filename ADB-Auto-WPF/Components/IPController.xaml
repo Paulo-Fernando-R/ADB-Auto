@@ -38,6 +38,7 @@
             Foreground="White" 
             FontFamily="Segoe MDL2 Assets" 
             Glyph="&#xE701;"
+            MouseLeftButtonDown="PrimaryButton_MouseLeftButtonDown"
             Visibility="{Binding ElementName=uc, Path=ShowPrimaryButton}"/>
         
         <ui:FontIcon 
@@ -45,7 +46,7 @@
             Foreground="White" 
             FontFamily="Segoe MDL2 Assets" 
             Glyph="&#xE74D;"
-            MouseLeftButtonDown="FontIcon_MouseLeftButtonDown"
+            MouseLeftButtonDown="SecondaryButton_MouseLeftButtonDown"
             Visibility="{Binding ElementName=uc, Path=ShowSecondaryButton}"/>
     </Grid>
 </UserControl>

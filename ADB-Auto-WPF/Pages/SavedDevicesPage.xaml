@@ -45,6 +45,7 @@
         </StackPanel>
 
         <Button 
+            Click="BtnKill_Click"
             Grid.Row="4" 
             Content="Matar Processo" 
             Padding="24,6" 
