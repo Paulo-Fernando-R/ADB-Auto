@@ -10,6 +10,38 @@ namespace ADB.Core.Repositories
     {
         private const string FILE_NAME = "SaveIPs.txt";
 
+        public void Remove(InternetProtocol internetProtocol)
+        {
+            IList<InternetProtocol> internetProtocols = GetAll();
+            InternetProtocol temp = GetByIP(internetProtocol.IP);
+
+            if (temp == null)
+                return;
+
+            internetProtocols.Remove(temp);
+
+            StreamWriter sw = new StreamWriter(FILE_NAME);
+
+            foreach (InternetProtocol ip in internetProtocols)
+            {
+                sw.WriteLine(ip.IP);
+            }
+
+            sw.Close();
+        }
+
+        public InternetProtocol GetByIP(string ip)
+        {
+            IList<InternetProtocol> internetProtocols = GetAll();
+            foreach (InternetProtocol internetProtocol in internetProtocols )
+            {
+                if (internetProtocol.IP.Equals(ip))
+                    return internetProtocol;
+            }
+
+            return null;
+        }
+
         public IList<InternetProtocol> GetAll()
         {
             if (!File.Exists(FILE_NAME))
@@ -21,7 +53,7 @@ namespace ADB.Core.Repositories
             return internetProtocols;
         }
 
-        public void Remove(IList<InternetProtocol> ips)
+        public void RemoveRange(IList<InternetProtocol> ips)
         {
             StreamWriter sw = new StreamWriter(FILE_NAME);
 
@@ -48,5 +80,6 @@ namespace ADB.Core.Repositories
                 return false;
             }
         }
+
     }
 }

@@ -27,6 +27,11 @@ namespace ADB_Auto_WPF.Pages
             {
                 IPField.Description = string.Empty;
                 return;
+            } 
+            else if (_ipRepository.GetByIP(value) != null)
+            {
+                IPField.Description = "Este IP já está sendo utilizado";
+                return;
             }
 
             string isValid = ValidateIP(value);

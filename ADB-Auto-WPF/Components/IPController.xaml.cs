@@ -1,17 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ADB.Core.Models;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace ADB_Auto_WPF.Components
 {
@@ -20,9 +10,21 @@ namespace ADB_Auto_WPF.Components
     /// </summary>
     public partial class IPController : UserControl
     {
-        public IPController()
+        public event RoutedEventHandler OnDelete;
+
+        private readonly InternetProtocol _internetProtocol;
+
+        public IPController(InternetProtocol internetProtocol)
         {
             InitializeComponent();
+
+            _internetProtocol = internetProtocol;
+            IPField.Text = internetProtocol.IP;
+        }
+
+        private void FontIcon_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            OnDelete?.Invoke(_internetProtocol, e);
         }
     }
 }

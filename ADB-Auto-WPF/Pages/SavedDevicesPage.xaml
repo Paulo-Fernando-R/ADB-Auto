@@ -4,7 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ADB_Auto_WPF.Pages"
-      xmlns:components="clr-namespace:ADB_Auto_WPF.Components"
+      xmlns:ui="http://schemas.modernwpf.com/2019"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="SavedDevicesPage">
@@ -21,25 +21,17 @@
         <StackPanel Grid.Row="0">
             <TextBlock Foreground="White" Text="Dispositivos salvos:" FontSize="20"/>
 
-            <WrapPanel ItemWidth="220" Orientation="Horizontal">
-                <components:IPController/>
-                <components:IPController/>
-                <components:IPController/>
-                <components:IPController/>
-                <components:IPController/>
-                <components:IPController/>
-            </WrapPanel>
+            <WrapPanel 
+                x:Name="PanelSavedDevices"
+                ItemWidth="220" 
+                Orientation="Horizontal"
+                Loaded="PanelSavedDevices_Loaded"/>
         </StackPanel>
 
         <StackPanel Grid.Row="2">
             <TextBlock Foreground="White" Text="Dispositivos conectados:" FontSize="20"/>
             
             <WrapPanel ItemWidth="220" Orientation="Horizontal">
-                <components:IPController/>
-                <components:IPController/>
-                <components:IPController/>
-                <components:IPController/>
-                <components:IPController/>
             </WrapPanel>
         </StackPanel>
 
@@ -48,5 +40,13 @@
             Content="Matar Processo" 
             Padding="24,6" 
             HorizontalAlignment="Right"/>
+
+        <ui:ContentDialog 
+            x:Name="QuestionDialog" 
+            Grid.RowSpan="5" 
+            PrimaryButtonText="Sim"
+            CloseButtonText="Não" 
+            Title="Tem certeza?" 
+            Content="O IP será excluído permanentemente!"/>
     </Grid>
 </Page>

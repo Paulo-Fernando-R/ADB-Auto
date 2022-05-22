@@ -15,8 +15,6 @@ namespace ADB_Auto_WPF
     {
         private readonly List<(string Tag, Type Page)> _pages = new List<(string Tag, Type page)>
         {
-            ("AddDevice", typeof(AddDevicePage)),
-            ("SavedDevices", typeof(SavedDevicesPage)),
             ("InstallApps", typeof(InstallAppsPage)),
             ("About", typeof(AboutPage)),
         };
@@ -53,7 +51,7 @@ namespace ADB_Auto_WPF
             }
             else if (navItemTag.Equals("SavedDevices"))
             {
-                ContentFrame.Navigate(new SavedDevicesPage());
+                ContentFrame.Navigate(new SavedDevicesPage(_ipRepository));
             }
             else
             {

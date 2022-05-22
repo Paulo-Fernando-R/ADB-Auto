@@ -121,7 +121,7 @@ namespace ADB_Auto
 
             int index = listBox1.SelectedIndex;
             savedIPs.RemoveAt(index);
-            ipRepository.Remove(savedIPs);
+            ipRepository.RemoveRange(savedIPs);
         }
 
         private async void InstallApk(string path, bool back)

@@ -7,7 +7,7 @@
              xmlns:ui="http://schemas.modernwpf.com/2019"
              mc:Ignorable="d" 
              MinWidth="220"
-             Height="40" Width="220">
+             Height="30" Width="220">
 
     <UserControl.Resources>
         <Style TargetType="{x:Type ui:FontIcon}">
@@ -28,9 +28,9 @@
         </Grid.ColumnDefinitions>
 
         <TextBlock 
+            x:Name="IPField"
             Foreground="White" 
-            FontSize="17" 
-            Text="192.168.0.1"/>
+            FontSize="17" />
 
         <ui:FontIcon 
             Grid.Column="1" 
@@ -42,6 +42,7 @@
             Grid.Column="2" 
             Foreground="White" 
             FontFamily="Segoe MDL2 Assets" 
-            Glyph="&#xE74D;"/>
+            Glyph="&#xE74D;"
+            MouseLeftButtonDown="FontIcon_MouseLeftButtonDown"/>
     </Grid>
 </UserControl>
