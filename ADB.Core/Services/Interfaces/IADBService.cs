@@ -1,4 +1,4 @@
-﻿namespace ADB_Auto.Services.Interfaces
+﻿namespace ADB.Core.Services.Interfaces
 {
     public interface IADBService
     {

@@ -1,8 +1,9 @@
 ﻿using ADB.Core.Models;
 using ADB.Core.Repositories;
 using ADB.Core.Repositories.Interfaces;
+using ADB.Core.Services;
+using ADB.Core.Services.Interfaces;
 using ADB_Auto.Services;
-using ADB_Auto.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

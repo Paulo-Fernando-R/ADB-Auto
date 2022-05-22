@@ -1,4 +1,6 @@
 ﻿using ADB.Core.Repositories;
+using ADB.Core.Services;
+using ADB.Core.Services.Interfaces;
 using ADB_Auto_WPF.Pages;
 using ModernWpf.Controls;
 using System;
@@ -20,12 +22,14 @@ namespace ADB_Auto_WPF
         };
 
         private readonly IPRepository _ipRepository;
+        private readonly IADBService _adbService;
 
         public MainWindow()
         {
             InitializeComponent();
 
             _ipRepository = new IPRepository();
+            _adbService = new ADBService();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -51,7 +55,7 @@ namespace ADB_Auto_WPF
             }
             else if (navItemTag.Equals("SavedDevices"))
             {
-                ContentFrame.Navigate(new SavedDevicesPage(_ipRepository));
+                ContentFrame.Navigate(new SavedDevicesPage(_ipRepository, _adbService));
             }
             else
             {

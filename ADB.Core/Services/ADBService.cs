@@ -1,7 +1,7 @@
-﻿using ADB_Auto.Services.Interfaces;
+﻿using ADB.Core.Services.Interfaces;
 using System.Diagnostics;
 
-namespace ADB_Auto.Services
+namespace ADB.Core.Services
 {
     public class ADBService : IADBService
     {

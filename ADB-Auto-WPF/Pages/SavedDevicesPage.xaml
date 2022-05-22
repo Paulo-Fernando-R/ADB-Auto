@@ -19,7 +19,10 @@
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0">
-            <TextBlock Foreground="White" Text="Dispositivos salvos:" FontSize="20"/>
+            <TextBlock 
+                Foreground="White" 
+                Text="Dispositivos salvos:" 
+                FontSize="20"/>
 
             <WrapPanel 
                 x:Name="PanelSavedDevices"
@@ -29,10 +32,16 @@
         </StackPanel>
 
         <StackPanel Grid.Row="2">
-            <TextBlock Foreground="White" Text="Dispositivos conectados:" FontSize="20"/>
-            
-            <WrapPanel ItemWidth="220" Orientation="Horizontal">
-            </WrapPanel>
+            <TextBlock 
+                Foreground="White" 
+                Text="Dispositivos conectados:" 
+                FontSize="20"/>
+
+            <WrapPanel 
+                x:Name="PanelConnectedDevices"
+                ItemWidth="220" 
+                Orientation="Horizontal"
+                Loaded="PanelConnectedDevices_Loaded"/>
         </StackPanel>
 
         <Button 

@@ -13,12 +13,7 @@ namespace ADB.Core.Repositories
         public void Remove(InternetProtocol internetProtocol)
         {
             IList<InternetProtocol> internetProtocols = GetAll();
-            InternetProtocol temp = GetByIP(internetProtocol.IP);
-
-            if (temp == null)
-                return;
-
-            internetProtocols.Remove(temp);
+            internetProtocols.Remove(internetProtocol);
 
             StreamWriter sw = new StreamWriter(FILE_NAME);
 
