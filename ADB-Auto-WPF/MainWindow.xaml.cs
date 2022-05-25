@@ -58,7 +58,7 @@ namespace ADB_Auto_WPF
             }
             else if (navItemTag.Equals("InstallApps"))
             {
-                ContentFrame.Navigate(new InstallAppsPage());
+                ContentFrame.Navigate(new InstallAppsPage(_ipRepository, _adbService));
             }
             else
             {

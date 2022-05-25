@@ -15,27 +15,73 @@
             <RowDefinition Height="40"/>
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0" Height="76" VerticalAlignment="Top">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="220"/>
-                <ColumnDefinition Width="50"/>
-            </Grid.ColumnDefinitions>
-        
-            <ui:AutoSuggestBox 
-                Header="Escolha um arquivo:" 
-                IsEnabled="False"/>
+        <StackPanel Grid.Row="0">
+            <Grid Height="76" VerticalAlignment="Top">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="220"/>
+                    <ColumnDefinition Width="50"/>
+                </Grid.ColumnDefinitions>
 
-            <Button Grid.Column="1">
-                <Button.Content>
-                    <ui:FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xEC51;"/>
-                </Button.Content>
-            </Button>
-        </Grid>
+                <ui:AutoSuggestBox 
+                    x:Name="TxtFile"
+                    Header="Escolha um APK:" 
+                    IsEnabled="False"/>
+
+                <Button Grid.Column="1" Click="BtnChooseAPK_Click">
+                    <Button.Content>
+                        <ui:FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xEC51;"/>
+                    </Button.Content>
+                </Button>
+            </Grid>
+
+            <ComboBox 
+                x:Name="CbxIP"
+                Text="Selecione um IP" 
+                Width="220" 
+                IsReadOnly="True" 
+                Focusable="False" 
+                IsEditable="True"
+                Loaded="CbxIP_Loaded">
+            </ComboBox>
+        </StackPanel>
 
         <Button 
+            Click="BtnInstall_Click"
             Grid.Row="1" 
             HorizontalAlignment="Right" 
             Padding="48,6"
             Content="Instalar"/>
+
+        <ui:ContentDialog 
+            x:Name="ChooseIPDialog"
+            Grid.RowSpan="3"
+            Title="Escolha um IP"
+            CloseButtonText="Ok">
+            
+            <TextBlock 
+                FontSize="14" 
+                Width="250" 
+                Text="É necessário que um IP esteja selecionado para prosseguir com a instalação"/>
+        </ui:ContentDialog>
+
+        <ui:ContentDialog 
+            x:Name="QuestionDialog"
+            Grid.RowSpan="3"
+            Title="Deseja instalar em segundo plano?"
+            PrimaryButtonText="Sim"
+            CloseButtonText="Não">
+
+            <TextBlock
+                FontSize="14"
+                Width="250"
+                Text="Se optar por instalar em segundo plano não terá o feedback quando terminar a instação"/>
+        </ui:ContentDialog>
+        
+        <ui:ContentDialog 
+            x:Name="SuccessDialog"
+            Grid.RowSpan="3"
+            Title="Resultado da Instalação"
+            CloseButtonText="Ok"/>
+
     </Grid>
 </Page>

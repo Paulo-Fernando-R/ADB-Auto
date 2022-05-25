@@ -21,5 +21,10 @@ namespace ADB.Core.Models
         {
             return -419837636+EqualityComparer<string>.Default.GetHashCode(IP);
         }
+
+        public override string ToString()
+        {
+            return IP;
+        }
     }
 }

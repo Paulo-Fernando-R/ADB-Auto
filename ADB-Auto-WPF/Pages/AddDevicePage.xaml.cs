@@ -28,11 +28,6 @@ namespace ADB_Auto_WPF.Pages
                 IPField.Description = string.Empty;
                 return;
             } 
-            else if (_ipRepository.GetByIP(value) != null)
-            {
-                IPField.Description = "Este IP já está sendo utilizado";
-                return;
-            }
 
             string isValid = ValidateIP(value);
             IPField.Description = isValid;
@@ -58,6 +53,9 @@ namespace ADB_Auto_WPF.Pages
             bool result = IPAddress.TryParse(text, out _);
             if (result)
                 return string.Empty;
+            
+            if (_ipRepository.GetByIP(text) != null)
+                return "Este IP já está sendo utilizado";
 
             return "O IP é inválido";
         }
