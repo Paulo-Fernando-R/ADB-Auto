@@ -9,7 +9,8 @@
         Title="ADB Tools" Height="450" Width="700"
         MinWidth="700" MinHeight="450"
         Loaded="Window_Loaded"
-        ui:WindowHelper.UseModernWindowStyle="True">
+        ui:WindowHelper.UseModernWindowStyle="True"
+        ui:ThemeManager.RequestedTheme="Dark">
 
     <Window.Resources>
         <SolidColorBrush x:Key="NavigationViewSelectionIndicatorForeground" Color="#A31955"/>

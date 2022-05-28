@@ -4,11 +4,94 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ADB_Auto_WPF.Pages"
+      xmlns:ui="http://schemas.modernwpf.com/2019"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="AboutPage">
 
+    <Page.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Margin" Value="0,6"/>
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="bd" Padding="4" CornerRadius="4">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="24"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Image 
+                                    x:Name="img"
+                                    Source="/Resources/linkedin.png" 
+                                    Width="24"
+                                    Opacity="0.75"/>
+                                
+                                <ContentPresenter 
+                                    Opacity="0.75"
+                                    x:Name="cp"
+                                    Grid.Column="1" 
+                                    Margin="8,0,0,0" 
+                                    HorizontalAlignment="Left" 
+                                    VerticalAlignment="Center"/>
+                            </Grid>
+                        </Border>
+                        
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Cursor" Value="Hand"/>
+                                <Setter TargetName="img" Property="Opacity" Value="1"/>
+                                <Setter TargetName="cp" Property="Opacity" Value="1"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+
     <Grid>
-        <TextBlock Foreground="White">AboutPage</TextBlock>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="25"/>
+        </Grid.RowDefinitions>
+        <WrapPanel Orientation="Vertical">
+            <TextBlock 
+            Foreground="White" 
+            TextWrapping="Wrap" 
+            FontSize="14" 
+            TextAlignment="Justify">Este app foi desenvolvido por tais pessoas com o objetivo de facilitar tarefas que necessitam do uso do ADB</TextBlock>
+
+            <TextBlock 
+            Padding="0,15" 
+            FontWeight="Bold" 
+            FontSize="18" 
+            Foreground="White" 
+            Text="Desenvolvedores"/>
+
+            <WrapPanel Margin="16,0" Orientation="Vertical">
+                <Button Content="Alessandra Diamantino" Click="BtnAlessandra_Click"/>
+                <Button Content="Maheus Ferreira" Click="BtnMatheus_Click"/>
+                <Button Content="Paulo Fernando" Click="BtnPaulo_Click"/>
+            </WrapPanel>
+
+        </WrapPanel>
+        
+        <TextBlock 
+            x:Name="TxtVersion"
+            Grid.Row="1" 
+            VerticalAlignment="Center" 
+            HorizontalAlignment="Right" 
+            Margin="16,0" 
+            Foreground="White" 
+            Opacity=".75" 
+            Text="Versão 1.0.0" 
+            FontSize="12"/>
     </Grid>
+    
 </Page>

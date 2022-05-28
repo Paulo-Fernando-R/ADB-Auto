@@ -60,12 +60,9 @@ namespace ADB_Auto_WPF
             {
                 ContentFrame.Navigate(new InstallAppsPage(_ipRepository, _adbService));
             }
-            else
+            else if (navItemTag.Equals("About"))
             {
-                (string Tag, Type Page) item = _pages.FirstOrDefault(p => p.Tag.Equals(navItemTag));
-                Type _page = item.Page;
-
-                ContentFrame.Navigate(_page, null);
+                ContentFrame.Navigate(new AboutPage());
             }
         }
     }
