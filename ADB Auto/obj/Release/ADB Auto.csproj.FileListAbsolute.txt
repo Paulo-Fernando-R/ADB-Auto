@@ -20,3 +20,8 @@ C:\Users\Usuario\Documents\GitHub\ADB-Auto\ADB Auto\obj\Release\ADB Auto.csproj.
 C:\Users\Usuario\Documents\GitHub\ADB-Auto\ADB Auto\obj\Release\ADB Auto.csproj.CoreCompileInputs.cache
 C:\Users\Usuario\Documents\GitHub\ADB-Auto\ADB Auto\obj\Release\ADB Auto.exe
 C:\Users\Usuario\Documents\GitHub\ADB-Auto\ADB Auto\obj\Release\ADB Auto.pdb
+C:\Users\Usuario\Documents\GitHub\ADB-Auto\ADB Auto\bin\Release\System.ValueTuple.dll
+C:\Users\Usuario\Documents\GitHub\ADB-Auto\ADB Auto\bin\Release\ADB.Core.dll
+C:\Users\Usuario\Documents\GitHub\ADB-Auto\ADB Auto\bin\Release\ADB.Core.pdb
+C:\Users\Usuario\Documents\GitHub\ADB-Auto\ADB Auto\obj\Release\ADB_Auto.TestCroco.resources
+C:\Users\Usuario\Documents\GitHub\ADB-Auto\ADB Auto\obj\Release\ADB Auto.csproj.CopyComplete
