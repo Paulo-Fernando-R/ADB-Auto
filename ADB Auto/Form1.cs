@@ -24,7 +24,7 @@ namespace ADB_Auto
         {
             InitializeComponent();
 
-            ipRepository = new IPRepository();
+            ipRepository = new IPRepository("SaveIPs.txt");
             adbService = new ADBService();
 
             savedIPs = new BindingList<InternetProtocol>(ipRepository.GetAll());

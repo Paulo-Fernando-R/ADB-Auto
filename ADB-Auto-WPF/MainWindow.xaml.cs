@@ -4,8 +4,7 @@ using ADB.Core.Services.Interfaces;
 using ADB_Auto_WPF.Pages;
 using ModernWpf.Controls;
 using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.IO;
 using System.Windows;
 
 namespace ADB_Auto_WPF
@@ -15,11 +14,6 @@ namespace ADB_Auto_WPF
     /// </summary>
     public partial class MainWindow : Window
     {
-        private readonly List<(string Tag, Type Page)> _pages = new List<(string Tag, Type page)>
-        {
-            ("About", typeof(AboutPage)),
-        };
-
         private readonly IPRepository _ipRepository;
         private readonly IADBService _adbService;
 
@@ -27,7 +21,12 @@ namespace ADB_Auto_WPF
         {
             InitializeComponent();
 
-            _ipRepository = new IPRepository();
+            string appData = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+            string folderPath = string.Format("{0}\\ADBTools", appData);
+            string filePath = string.Format("{0}\\SaveIPs.txt", folderPath);
+            Directory.CreateDirectory(folderPath);
+
+            _ipRepository = new IPRepository(filePath);
             _adbService = new ADBService();
         }
 

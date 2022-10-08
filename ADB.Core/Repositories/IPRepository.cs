@@ -8,14 +8,19 @@ namespace ADB.Core.Repositories
 {
     public class IPRepository : IIPRespository
     {
-        private const string FILE_NAME = "SaveIPs.txt";
+        private readonly string filePath;
+
+        public IPRepository(string filePath)
+        {
+            this.filePath = filePath;
+        }
 
         public void Remove(InternetProtocol internetProtocol)
         {
             IList<InternetProtocol> internetProtocols = GetAll();
             internetProtocols.Remove(internetProtocol);
 
-            StreamWriter sw = new StreamWriter(FILE_NAME);
+            StreamWriter sw = new StreamWriter(filePath);
 
             foreach (InternetProtocol ip in internetProtocols)
             {
@@ -39,18 +44,18 @@ namespace ADB.Core.Repositories
 
         public IList<InternetProtocol> GetAll()
         {
-            if (!File.Exists(FILE_NAME))
+            if (!File.Exists(filePath))
             {
                 return new List<InternetProtocol>();
             }
 
-            IList<InternetProtocol> internetProtocols = File.ReadAllLines(FILE_NAME).Select(x => new InternetProtocol(x)).ToList();
+            IList<InternetProtocol> internetProtocols = File.ReadAllLines(filePath).Select(x => new InternetProtocol(x)).ToList();
             return internetProtocols;
         }
 
         public void RemoveRange(IList<InternetProtocol> ips)
         {
-            StreamWriter sw = new StreamWriter(FILE_NAME);
+            StreamWriter sw = new StreamWriter(filePath);
 
             foreach (InternetProtocol ip in ips)
             {
@@ -64,7 +69,7 @@ namespace ADB.Core.Repositories
         {
             try
             {
-                StreamWriter sw = new StreamWriter(FILE_NAME, true);
+                StreamWriter sw = new StreamWriter(filePath, true);
                 sw.WriteLine(ip.IP);
                 sw.Close();
 
