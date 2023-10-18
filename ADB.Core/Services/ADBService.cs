@@ -1,4 +1,5 @@
 ﻿using ADB.Core.Services.Interfaces;
+using System;
 using System.Diagnostics;
 
 namespace ADB.Core.Services
@@ -8,13 +9,14 @@ namespace ADB.Core.Services
         public string ConnectToDevice(string ip)
         {
             Process cmd = StartCMD();
-
-            cmd.StandardInput.WriteLine("adb tcpip 5555");
+            if (!ip.Contains(":"))
+                cmd.StandardInput.WriteLine("adb tcpip 5555");
             cmd.StandardInput.WriteLine("adb connect " + ip);
             cmd.StandardInput.Flush();
             cmd.StandardInput.Close();
 
             string message = cmd.StandardOutput.ReadToEnd();
+
             return message;
         }
 
